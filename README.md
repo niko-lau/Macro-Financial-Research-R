@@ -88,8 +88,8 @@ Single-equation OLS of Δlog(deflator) on contemporaneous and lagged Δlog(USD i
 ## Key Findings
 
 ### ARIMA Forecasts
-- **Net exports** — `ARIMA(0,1,0)(2,0,0)[4] with drift`. A near-random-walk with a persistent negative drift reflecting the long-run U.S. trade deficit.
-- **Real GDP** — `ARIMA(0,1,1) with drift`. An MA(1) on first differences with a positive drift capturing trend growth.
+- **Net exports** — `ARIMA(0,1,0)(2,0,0)[4] with drift`. A near-random-walk with a persistent negative drift reflecting the long-run U.S. trade deficit. The forecast predicts net exports will remain deeply negative and slightly worsen over the next two years.
+- **Real GDP** — `ARIMA(0,1,1) with drift`. An MA(1) on first differences with a positive drift capturing trend growth. The forecast shows continued expansion with a stable upward path.
 - **WTI crude oil** — `ARIMA(1,1,2)`. Model selection, prediction intervals, and output schema match the macro targets.
 
 ### Exchange-Rate Pass-Through
@@ -128,7 +128,7 @@ A 1% appreciation of the broad dollar is associated with a cumulative decline of
 ---
 
 ## Reproducibility
-
+This section explains how to reproduce every artifact in `data/` and `outputs/` from scratch.
 ```r
 # 1. Install dependencies
 install.packages(c(
@@ -142,3 +142,13 @@ install.packages(c(
 
 # 3. Run the entire pipeline
 source(here::here("scripts", "05_generate_outputs.R"))
+
+
+## Skills Demonstrated
+
+- **R for research-support workflows** — modular helper layer under `R/`, numbered pipeline stages under `scripts/`, `here::here()` path discipline, deterministic artifact paths.
+- **Time-series forecasting** — `forecast::auto.arima` over a configurable target list with 80% and 95% prediction intervals; structurally different targets handled by a single loop.
+- **Empirical trade economics** — distributed-lag exchange-rate pass-through regression with a CPI control; cumulative coefficient computed for both import and export deflators.
+- **Frequency alignment** — daily, monthly, and quarterly series harmonized to a quarterly panel via period-average aggregation.
+- **Reproducibility** — one-command run, API key isolated to a git-ignored `.Renviron`, deterministic output paths.
+- **Documentation discipline** — methodology, data dictionary, and research-themes write-up under `docs/`.
