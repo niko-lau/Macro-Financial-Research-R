@@ -143,6 +143,7 @@ install.packages(c(
 # 3. Run the entire pipeline
 source(here::here("scripts", "05_generate_outputs.R"))
 
+```
 ---
 
 ## Skills Demonstrated
